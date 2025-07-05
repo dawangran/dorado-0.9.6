@@ -1,0 +1,63 @@
+# Common sanitizer parts
+
+.sanitizer_common:
+  parallel:
+    matrix:
+      - SANITIZER:
+        - "address;undefined"
+        - "thread"
+  variables:
+    # Debug is much faster to build than Release, and that outweighs the time spent
+    # running the tests on some of our CI machines. It's good to sanitize unoptimised
+    # builds anyway so that the optimiser can't have already acted on any UB.
+    BUILD_TYPE: "Debug"
+  before_script:
+    # Add the sanitizer flag to the build
+    - export BUILD_OPTIONS="${BUILD_OPTIONS} -D ECM_ENABLE_SANITIZERS='${SANITIZER}'"
+    # Disable ccache since it's not likely to find a match and it slows down the ordinary
+    # builds if we do polute the cache.
+    - export BUILD_OPTIONS="${BUILD_OPTIONS} -D DORADO_DISABLE_CCACHE=ON"
+    # Setup additional runtime options
+    - export ASAN_OPTIONS=detect_stack_use_after_return=1:check_initialization_order=1
+    - export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1:suppressions=${PWD}/.gitlab/ubsan.supp
+    - export LSAN_OPTIONS=suppressions=${PWD}/.gitlab/lsan.supp
+    - export TSAN_OPTIONS=suppressions=${PWD}/.gitlab/tsan.supp
+  # No need to keep the build around
+  # Note that this requires .sanitizer_common to come last in the extends list
+  artifacts: null
+  interruptible: true
+
+# On Linux we don't currently test TSan due to some issues with pod5/libarrow being
+# uninstrumented and lacking symbols, leading to suppression files failing to suppress
+# false-positives coming from them. Once we have it working we can remove this entry.
+.sanitizer_common_linux:
+  extends:
+    .sanitizer_common
+  variables:
+    # The only BUILD_OPTIONS in the Linux jobs are to build Koi from source and to build
+    # the mm2 exe. We don't need either of those for the sanitizers though.
+    BUILD_OPTIONS: ""
+  parallel:
+    matrix:
+      - SANITIZER:
+        - "address;undefined"
+
+# Sanitizer jobs
+
+sanitize:linux:x86:focal:
+  extends:
+    - build:linux:x86:focal
+    - .sanitizer_common_linux
+  before_script:
+    # Run both base setups
+    - !reference ["build:linux:x86:focal", before_script]
+    - !reference [.sanitizer_common_linux, before_script]
+    # We need to modify ASAN_OPTIONS for the following reasons:
+    #   protect_shadow_gap - CUDA maps the same memory region as ASAN, so tell it to move the shadow
+    #   detect_leaks - LeakSanitizer errors out for some reason
+    - export ASAN_OPTIONS=${ASAN_OPTIONS}:protect_shadow_gap=0:detect_leaks=0
+
+sanitize:macos:arm:
+  extends:
+    - build:macos:arm
+    - .sanitizer_common

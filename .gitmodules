@@ -1,0 +1,49 @@
+[submodule "dorado/3rdparty/HighFive"]
+	path = dorado/3rdparty/HighFive
+	url = https://github.com/BlueBrain/HighFive.git
+	ignore = dirty
+[submodule "dorado/3rdparty/toml11"]
+	path = dorado/3rdparty/toml11
+	url = https://github.com/ToruNiina/toml11.git
+[submodule "dorado/3rdparty/hdf_plugins"]
+	path = dorado/3rdparty/hdf_plugins
+	url = https://github.com/nanoporetech/vbz_compression.git
+[submodule "dorado/3rdparty/zstd"]
+	path = dorado/3rdparty/zstd
+	url = https://github.com/facebook/zstd.git
+[submodule "dorado/3rdparty/cpp-httplib"]
+	path = dorado/3rdparty/cpp-httplib
+	url = https://github.com/yhirose/cpp-httplib.git
+[submodule "dorado/3rdparty/11Zip"]
+	path = dorado/3rdparty/elzip
+	url = https://github.com/Sygmei/11Zip.git
+[submodule "dorado/3rdparty/cxxpool"]
+	path = dorado/3rdparty/cxxpool
+	url = https://github.com/bloomen/cxxpool.git
+[submodule "dorado/3rdparty/edlib"]
+	path = dorado/3rdparty/edlib
+	url = https://github.com/martinsos/edlib
+[submodule "dorado/3rdparty/htslib"]
+	path = dorado/3rdparty/htslib
+	url = https://github.com/samtools/htslib.git
+[submodule "dorado/3rdparty/NVTX"]
+	path = dorado/3rdparty/NVTX
+	url = https://github.com/NVIDIA/NVTX.git
+[submodule "dorado/3rdparty/spdlog"]
+	path = dorado/3rdparty/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "dorado/3rdparty/indicators"]
+	path = dorado/3rdparty/indicators
+	url = https://github.com/p-ranav/indicators.git
+[submodule "dorado/3rdparty/ont-minimap2"]
+	path = dorado/3rdparty/ont-minimap2
+	url = https://github.com/nanoporetech/ont-minimap2.git
+[submodule "dorado/3rdparty/date"]
+	path = dorado/3rdparty/date
+	url = https://github.com/HowardHinnant/date.git
+[submodule "dorado/3rdparty/argparse"]
+	path = dorado/3rdparty/argparse
+	url = https://github.com/p-ranav/argparse.git
+[submodule "dorado/3rdparty/catch2"]
+	path = dorado/3rdparty/catch2
+	url = https://github.com/catchorg/Catch2.git

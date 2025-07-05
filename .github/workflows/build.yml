@@ -1,0 +1,50 @@
+name: build-dorado
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, windows-2019-large]
+        include:
+          - os: windows-2019-large
+            arch: "-A x64"
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Clean up diskspace
+      if: matrix.os == 'ubuntu-22.04'
+      run: sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost "$AGENT_TOOLSDIRECTORY"
+    - name: Set up cmake
+      uses: jwlawson/actions-setup-cmake@v1.13
+      with:
+        cmake-version: '3.25.x'
+    - uses: Jimver/cuda-toolkit@v0.2.22
+      id: cuda-toolkit
+      with:
+        cuda: '12.8.0'
+    - name: Install dependencies from apt
+      if: matrix.os == 'ubuntu-22.04'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libhdf5-dev libssl-dev autoconf
+    - name: Set up Windows path
+      uses: myci-actions/export-env-var-powershell@1
+      if: matrix.os == 'windows-2019-large'
+      with:
+        name: PATH
+        value: C:\a\dorado\dorado\dist\bin;$env:PATH
+    - name: Build dorado
+      run: |
+        cmake -S . -B cmake-build ${{ matrix.arch }}
+        cmake --build cmake-build --config Release -j 8
+    - name: Cleanup torch
+      uses: JesseTG/rm@v1.0.3
+      with:
+        path: C:\a\dorado\dorado\3rdparty
+    - name: Test dorado
+      run: |
+        cmake --build cmake-build --config Release --target install -j 8
+        ctest -C Release --test-dir cmake-build --output-on-failure --verbose

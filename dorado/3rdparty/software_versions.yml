@@ -1,0 +1,180 @@
+---
+argparse:
+    description: >
+        C++ argument parser
+    version: "v3.1"
+    url: http://github.com/p-ranav/argparse
+    license: argparse/LICENSE
+    files:
+        - argparse
+cpp-httplib:
+    description: >
+        A C++11 single-file header-only cross platform HTTP/HTTPS library
+    version: "v0.18.3"
+    url: https://github.com/yhirose/cpp-httplib
+    license: cpp-httplib/LICENSE
+    files:
+        - cpp-httplib
+cuda-toolkit:
+    description: >
+        CUDA is a software layer that gives direct access to the GPU's virtual instruction set.
+    version: "11.8.89"
+    url: https://developer.nvidia.com/cuda-11-8-0-download-archive
+    license: PATH_NOT_AVAILABLE
+    files:
+        - /usr/local/cuda/targets/x86_64-linux
+# Note: Cutlass is included via Koi, it's not in the source tree usually
+cutlass:
+    description: >
+         CUDA C++ template abstractions for implementing high-performance matrix-multiplication (GEMM) and related computations.
+    version: "v3.1.0"
+    url: https://github.com/NVIDIA/cutlass
+    license: PATH_NOT_AVAILABLE
+    files:
+        - PATH_NOT_AVAILABLE
+cxxpool:
+    description: >
+        A header-only thread pool for C++
+    version: "2.0.0"
+    url: https://github.com/bloomen/cxxpool
+    license: cxxpool/LICENSE
+    files:
+        - cxxpool
+date:
+    description: >
+        Date and time handling libraries
+    version: "v3.0.3"
+    url: https://github.com/HowardHinnant/date
+    license: date/LICENSE.txt
+    files:
+        - date
+edlib:
+    description: >
+        C/C++ library for sequence alignment using edit distance
+    version: "1.3.9.post1"
+    url: https://github.com/martinsos/edlib
+    license: edlib/LICENSE
+    files:
+        - edlib
+elzip:
+    description: >
+        Simple zipping / unzipping C++ Lib
+    version: "516e161d5c96aa8f2603fb30b10b7770a87332c2"
+    url: https://github.com/Sygmei/11Zip
+    license: elzip/LICENSE
+    files:
+        - elzip
+gsl-lite:
+    description: >
+        A single-file header-only version of ISO C++ Guidelines Support Library (GSL) for C++98, C++11, and later
+    version: "v0.38.1"
+    url: https://github.com/gsl-lite/gsl-lite
+    license: PATH_NOT_AVAILABLE
+    files:
+        - hdf_plugins/third_party/gsl
+HighFive:
+    description: >
+        Header-only C++11 friendly interface for libhdf5.
+    version: "v2.10.1"
+    url: https://github.com/BlueBrain/HighFive
+    license: HighFive/LICENSE
+    files:
+        - HighFive
+htslib:
+    description: >
+        C library for accessing common file formats, such as SAM, CRAM and VCF
+    version: "1.21"
+    url: https://github.com/samtools/htslib
+    license: htslib/LICENSE
+    files:
+        - htslib
+indicators:
+    description: >
+        Thread-safe progress bars and spinners.
+    version: "88544847c51397004a31cf2817c334624c6350cf"
+    url: https://github.com/p-ranav/indicators
+    license: indicators/LICENSE
+    files:
+        - indicators
+intervaltree:
+    description: >
+        Lightweight C++ interval tree library
+    version: "bd7b23e002881a01dee4871d7d0e52a3dfdf7dbd"
+    url: https://github.com/ekg/intervaltree.git
+    license: intervaltree/LICENSE
+    files:
+        - intervaltree
+minimap2:
+    description: >
+        Sequence alignment program
+    version: "v2.28"
+    url: https://github.com/lh3/minimap2
+    license: ont-minimap2/src/3rdparty/minimap2/LICENSE.txt
+    files:
+        - ont-minimap2/src/3rdparty/minimap2
+NVTX:
+    description: >
+        API for annotating source code to provide contextual information to developer tools.
+    version: "v3.1.0"
+    url: https://github.com/NVIDIA/NVTX
+    license: NVTX/LICENSE.txt
+    files:
+        - NVTX
+pthread-win32:
+    description: >
+        Combined pthread-win32 fork of RedFox20 + Oktonion + WinBuild.
+    version: "a89bf2154a28113a7373e25fe2729dee4e004385"
+    url: https://github.com/GerHobbelt/pthread-win32
+    license: ont-minimap2/src/3rdparty/pthread-win32/docs/LICENSE.md
+    files:
+        - ont-minimap2/src/3rdparty/pthread-win32
+# For pytorch builds see https://git.oxfordnanolabs.local/machine-learning/torch-builds
+# pytorch is not in the source tree as it's downloaded from the CDN
+pytorch:
+    description: >
+        Tensor computation (like NumPy) with strong GPU acceleration and Deep neural networks.
+    version: "v2.6.0"
+    url: https://github.com/pytorch/pytorch
+    license: PATH_NOT_AVAILABLE
+    files:
+        - PATH_NOT_AVAILABLE
+spdlog:
+    description: >
+        C++ logging library.
+    version: "v1.15.0"
+    url: https://github.com/gabime/spdlog
+    license: spdlog/LICENSE
+    files:
+        - spdlog
+streamvbyte:
+    description: >
+          integer compression technique that applies SIMD instructions (vectorization) to Google's Group Varint approach.
+    version: "v2.0.0"
+    url: https://github.com/fast-pack/streamvbyte
+    license: hdf_plugins/third_party/streamvbyte/LICENSE
+    files:
+        - hdf_plugins/third_party/streamvbyte
+toml11:
+    description: >
+        TOML for Modern C++
+    version: "v4.2.0"
+    url: https://github.com/ToruNiina/toml11
+    license: toml11/LICENSE
+    files:
+        - toml11
+zlib-ng:
+    description: >
+        zlib data compression library for the next generation systems.
+    version: "v2.2.4"
+    url: https://github.com/zlib-ng/zlib-ng
+    license: ont-minimap2/src/3rdparty/zlib-ng/LICENSE.md
+    files:
+        - ont-minimap2/src/3rdparty/zlib-ng
+zstd:
+    description: >
+        Fast lossless compression algorithm.
+    version: "v1.5.6"
+    url: https://github.com/facebook/zstd
+    license: zstd/LICENSE
+    files:
+        - zstd
