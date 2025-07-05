@@ -1,4 +1,4 @@
-# Dorado
+# Dorado ：From https://github.com/nanoporetech/dorado/tree/v0.9.6
 
 Dorado is a high-performance, easy-to-use, open source basecaller for Oxford Nanopore reads.
 
